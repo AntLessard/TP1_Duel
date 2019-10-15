@@ -22,7 +22,7 @@ class FighterTest {
 	
 	@BeforeEach
 	public void initializeFighter() {
-		fighter = new Fighter(ANY_SP, ANY_DP, ANY_IP, ANY_CP, null, null);
+		fighter = new Fighter(ANY_SP, ANY_DP, ANY_IP, ANY_CP, null, null);//MS On doit utiliser des mocks pour les capacités.
 	}
 	
 	@Test
@@ -51,5 +51,5 @@ class FighterTest {
 			new Fighter(ANY_SP + (FighterStat.INITIAL_STAT_LIMIT), ANY_DP, ANY_IP, ANY_CP, null, null);
 		    });	
 	}
-
+//MS Il manque des méthodes à tester.
 }

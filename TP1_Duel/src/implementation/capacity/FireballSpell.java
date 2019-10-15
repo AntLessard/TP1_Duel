@@ -11,7 +11,7 @@ public class FireballSpell extends Capacity implements IOffense{
 	}
 	
 	public int calculatePower(ICapacity capacity, FighterStat fighterStat) {
-		int power = (fighterStat.ip * this.getCharc() / 100) * 3;
+		int power = (fighterStat.ip * this.getCharc() / 100) * 3;//MS Les chiffres magiques doivent être dans des constantes.
 		return power;
 	}
 

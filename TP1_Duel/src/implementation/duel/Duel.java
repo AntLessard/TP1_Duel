@@ -14,7 +14,7 @@ public class Duel implements IDuel{
 	public Fighter def; //Defender
 	public ICapacity engCap; //engagementCapacity
 	
-	public Duel(Fighter attacker, Fighter defender, ICapacity engagementCapacity) {
+	public Duel(Fighter attacker, Fighter defender, ICapacity engagementCapacity) {//MS On doit s'assurer que le fighter a bien la capacité utilisée.
 		this.atk = attacker;
 		this.def = defender;
 		validateEngagementCapacity(engagementCapacity);
@@ -28,7 +28,7 @@ public class Duel implements IDuel{
 	
 	public void acceptEngagement(ICapacity retalCap) { //retaliationCapacity
 		if(retalCap instanceof IHealing) throw new IllegalCapacityUsedInEngagement(IllegalCapacityUsedInEngagement.ILLEGAL_RETALIATION_CAPACITY_TYPE);
-		fight(this.engCap, retalCap);
+		fight(this.engCap, retalCap);//MS On avait tout mis en place (IOffense, IHealing!)pour ne pas faire d'instanceof!!
 	}
 	
 	public void denyEngagement() {
@@ -52,11 +52,11 @@ public class Duel implements IDuel{
 	
 	private void rewardVictor(Fighter victor) {
 		victor.statUp();
-		victor.addCapacity(new HealPotion(20));	//Placeholder capacity
+		victor.addCapacity(new HealPotion(20));	//Placeholder capacity //MS Le gagnant a toujours la même capacité?
 	}
 	
-	private void punishDefeated(Fighter defeated, int capDiff) {
+	private void punishDefeated(Fighter defeated, int capDiff) {//MS Pour être plus clean, on aurait dû mettre deux méthodes avec un nombre d'arguments différents.
 		defeated.statDown();
-		defeated.fighterStat.hp = defeated.fighterStat.hp - capDiff;
+		defeated.fighterStat.hp = defeated.fighterStat.hp - capDiff;//MS Tell don't ask: ce n'est pas au duel de changer les statistiques, il doit indiquer de combien on modifie et les stats vont faire le travail.
 	}
 }

@@ -7,12 +7,12 @@ import abstracts.capacity.ICapacity;
 import abstracts.fighter.IFighter;
 import implementation.capacity.Capacity;
 
-public class Fighter implements IFighter{
+public class Fighter implements IFighter{//MS Fighter doit être abstrait (on ne doit pas créer de fighter)
 	public List<ICapacity> capacityList;
-	public FighterStat fighterStat;
+	public FighterStat fighterStat;//MS Il faut programmer avec les interfaces (IFighterStats)
 	
 	public Fighter(int sp, int dp, int ip, int cp, ICapacity cap1, ICapacity cap2) {
-		this.fighterStat = new FighterStat(sp, dp, ip, cp);
+		this.fighterStat = new FighterStat(sp, dp, ip, cp);//MS Les classes ne doivent pas implémenter d'objets.
 		this.capacityList = new ArrayList<ICapacity>();
 		addCapacity(cap1);
 		addCapacity(cap2);
@@ -38,7 +38,7 @@ public class Fighter implements IFighter{
 		return fighterStat.hp;
 	}
 	
-	public Capacity selectCapacity(int i) {
+	public Capacity selectCapacity(int i) {//MS la classe utilisatrice ne doit pas utiliser les index, elle doit demander la capacité recherchée.
 		return (Capacity) this.capacityList.get(i);
 		
 	}
@@ -48,11 +48,11 @@ public class Fighter implements IFighter{
 	}
 	
 	public int getPower(ICapacity capacity) {
-		return capacity.calculatePower(capacity, fighterStat);
+		return capacity.calculatePower(capacity, fighterStat);//MS on ne passe pas la capacité en paramètre puisque c'est à elle qu'on demande le calcul.
 	}
 	
 	public void statUp() {
-		fighterStat.sp = fighterStat.sp + FighterStat.STAT_REWARD;
+		fighterStat.sp = fighterStat.sp + FighterStat.STAT_REWARD;//MS ce travail est la responsabilité des FighterStats. Le fighter doit seulement lui demander de changer ses stats.
 		fighterStat.dp = fighterStat.dp + FighterStat.STAT_REWARD;
 		fighterStat.ip = fighterStat.ip + FighterStat.STAT_REWARD;
 		fighterStat.cp = fighterStat.cp + FighterStat.STAT_REWARD;

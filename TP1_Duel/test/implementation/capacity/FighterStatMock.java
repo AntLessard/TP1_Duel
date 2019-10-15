@@ -2,7 +2,7 @@ package implementation.capacity;
 
 import implementation.fighter.FighterStat;
 
-public class FighterStatMock extends FighterStat {
+public class FighterStatMock extends FighterStat {//MS Le mock doit implémenter l'interface.
 	public int sp;
 	public int dp;
 	public int ip;
